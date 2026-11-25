@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Débora — Desenvolvimento de Sistemas, tecnologia e projetos digitais.">
+  <title>Débora | Portfólio</title>
+  <style>
+    :root {
+      --bg: #090909;
+      --surface: #141414;
+      --surface-2: #1b1b1b;
+      --text: #f5f5f5;
+      --muted: #aaa;
+      --red: #ed2535;
+      --red-dark: #a80e20;
+      --line: rgba(255,255,255,.09);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, 90%); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(9,9,9,.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { font-size: 1.35rem; font-weight: 900; letter-spacing: 2px; }
+    .logo span { color: var(--red); }
+    .nav-links { display: flex; gap: 25px; color: #ddd; font-size: .92rem; }
+    .nav-links a:hover { color: var(--red); }
+    .hero {
+      min-height: 610px; display: grid; align-items: center;
+      background: radial-gradient(circle at 80% 45%, rgba(237,37,53,.18), transparent 32%),
+                  linear-gradient(120deg, #090909 55%, #16090c);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-content { padding: 90px 0; max-width: 760px; }
+    .eyebrow { color: var(--red); font-weight: 800; letter-spacing: 3px; text-transform: uppercase; font-size: .78rem; }
+    h1 { font-size: clamp(3rem, 8vw, 6.3rem); line-height: .98; margin: 18px 0; letter-spacing: -3px; }
+    h1 span { color: var(--red); }
+    .hero p { color: #c4c4c4; font-size: 1.12rem; max-width: 620px; margin-bottom: 30px; }
+    .buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 13px 22px; border-radius: 7px; font-weight: 800; transition: .25s; }
+    .btn-primary { background: var(--red); color: white; }
+    .btn-primary:hover { background: #ff4050; transform: translateY(-3px); }
+    .btn-outline { border: 1px solid #555; }
+    .btn-outline:hover { border-color: var(--red); color: var(--red); }
+    section { padding: 86px 0; }
+    .section-label { color: var(--red); text-transform: uppercase; font-size: .76rem; font-weight: 800; letter-spacing: 2.5px; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 8px 0 15px; }
+    .section-intro { color: var(--muted); max-width: 690px; margin-bottom: 35px; }
+    .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 35px; align-items: stretch; }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 28px; }
+    .panel p { color: #c2c2c2; }
+    .highlight { color: white; font-weight: 700; }
+    .facts { display: grid; gap: 13px; }
+    .fact { padding: 15px; border-left: 3px solid var(--red); background: var(--surface-2); border-radius: 5px; }
+    .fact strong { display: block; font-size: .9rem; }
+    .fact span { color: var(--muted); font-size: .88rem; }
+    .skills { display: flex; flex-wrap: wrap; gap: 12px; }
+    .skill { padding: 10px 15px; border: 1px solid rgba(237,37,53,.35); background: rgba(237,37,53,.08); border-radius: 30px; color: #eee; font-size: .9rem; }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .project {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+      overflow: hidden; transition: .25s;
+    }
+    .project:hover { transform: translateY(-6px); border-color: rgba(237,37,53,.65); }
+    .project-top {
+      height: 155px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #24090e, #111);
+      border-bottom: 1px solid var(--line); font-size: 2.2rem; font-weight: 900; letter-spacing: 2px;
+    }
+    .project-top span { color: var(--red); }
+    .project-body { padding: 23px; }
+    .project-body h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .project-body p { color: var(--muted); font-size: .94rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { color: #ff8790; background: rgba(237,37,53,.1); padding: 5px 9px; border-radius: 5px; font-size: .75rem; }
+    .game-note { margin-top: 22px; padding: 18px 20px; border: 1px dashed #63313a; border-radius: 10px; color: #bbb; }
+    .goal { background: linear-gradient(135deg, #19090c, #111); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .goal-box { max-width: 780px; }
+    .goal-box p { color: #c7c7c7; font-size: 1.05rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .contact-card { padding: 23px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+    .contact-card small { color: var(--red); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; }
+    .contact-card p { margin-top: 7px; color: #ddd; overflow-wrap: anywhere; }
+    footer { padding: 25px 0; border-top: 1px solid var(--line); color: #888; text-align: center; font-size: .85rem; }
+    @media (max-width: 700px) {
+      .nav-links { gap: 12px; font-size: .78rem; }
+      .about-grid, .projects, .contact-grid { grid-template-columns: 1fr; }
+      .hero { min-height: 540px; }
+      section { padding: 65px 0; }
+      h1 { letter-spacing: -2px; }
+    }
+    @media (max-width: 430px) {
+      nav { align-items: flex-start; flex-direction: column; padding: 15px 0; }
+      .nav-links { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#inicio">DÉBORA<span>.</span></a>
+      <div class="nav-links">
+        <a href="#sobre">Sobre mim</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Portfólio • Tecnologia e inovação</div>
+          <h1>Olá, eu sou<br><span>Débora.</span></h1>
+          <p>Estudante de Desenvolvimento de Sistemas, apaixonada por tecnologia e por transformar ideias em projetos digitais.</p>
+          <div class="buttons">
+            <a class="btn btn-primary" href="#projetos">Conheça meus projetos</a>
+            <a class="btn btn-outline" href="#sobre">Saiba mais sobre mim</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <div class="section-label">Quem sou eu</div>
+        <h2>Sobre mim</h2>
+        <div class="about-grid">
+          <div class="panel">
+            <p>Sou estudante da área de <span class="highlight">Desenvolvimento de Sistemas e Tecnologia da Informação</span>. Tenho interesse em programação, criação de sites, aplicativos, jogos e novas tecnologias.</p>
+            <br>
+            <p>Sou dedicada, criativa e gosto de aprender na prática. Busco transformar ideias em soluções digitais, desenvolver minhas habilidades e ganhar experiência para crescer profissionalmente na área de TI.</p>
+          </div>
+          <div class="facts">
+            <div class="fact"><strong>Área de interesse</strong><span>Desenvolvimento de software e tecnologia</span></div>
+            <div class="fact"><strong>Meu foco</strong><span>Aprender, criar e evoluir com cada projeto</span></div>
+            <div class="fact"><strong>Meu objetivo</strong><span>Construir uma carreira na área de tecnologia</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <div class="container">
+        <div class="section-label">O que estou aprendendo</div>
+        <h2>Conhecimentos e habilidades</h2>
+        <p class="section-intro">Tecnologias e conhecimentos que fazem parte da minha jornada de aprendizagem.</p>
+        <div class="skills">
+          <span class="skill">HTML</span><span class="skill">CSS</span>
+          <span class="skill">JavaScript</span><span class="skill">Python</span>
+          <span class="skill">SQL / MySQL</span><span class="skill">Supabase</span>
+          <span class="skill">Git e GitHub</span><span class="skill">Lógica de programação</span>
+          <span class="skill">UI e UX</span><span class="skill">Sites responsivos</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="container">
+        <div class="section-label">O que já criei</div>
+        <h2>Meus projetos</h2>
+        <p class="section-intro">Alguns projetos acadêmicos e pessoais que representam minhas ideias e meu aprendizado em tecnologia.</p>
+        <div class="projects">
+          <article class="project">
+            <div class="project-top">AURA<span>GYM</span></div>
+            <div class="project-body">
+              <h3>AURAGYM — Academia</h3>
+              <p>Site de academia com proposta visual moderna. O projeto prevê cadastro de usuários, organização de treinos, agendamentos e acompanhamento das atividades.</p>
+              <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Supabase</span></div>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project-top">ESTUDE<span>.</span>AI</div>
+            <div class="project-body">
+              <h3>Estude Comigo — Estudos</h3>
+              <p>Aplicativo pensado para ajudar estudantes a organizar a rotina, com cronograma, calendário, resumos, quizzes, exercícios, ranking e grupos de estudo.</p>
+              <div class="tags"><span class="tag">Aplicativo</span><span class="tag">Organização</span><span class="tag">Educação</span><span class="tag">IA</span></div>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project-top">SNEAK<span>HUB</span></div>
+            <div class="project-body">
+              <h3>SneakHub — Loja virtual</h3>
+              <p>Conceito de loja virtual de tênis, com identidade visual própria, tela de login, catálogo de produtos, favoritos e perfil do usuário.</p>
+              <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Interface</span><span class="tag">E-commerce</span></div>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project-top">FIT<span>APP</span></div>
+            <div class="project-body">
+              <h3>Aplicativo Fitness</h3>
+              <p>Projeto acadêmico para registrar atividades, organizar rotinas de exercícios e apresentar dados de acompanhamento por meio de gráficos e estatísticas.</p>
+              <div class="tags"><span class="tag">Aplicativo</span><span class="tag">Planejamento</span><span class="tag">Estatísticas</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="game-note"><strong>Projetos de jogos:</strong> esta seção pode receber os nomes, imagens e descrições dos jogos que você desenvolveu. Os detalhes ainda precisam ser adicionados.</div>
+      </div>
+    </section>
+
+    <section class="goal">
+      <div class="container">
+        <div class="goal-box">
+          <div class="section-label">Próximos passos</div>
+          <h2>Meu objetivo profissional</h2>
+          <p>Quero continuar aprendendo, desenvolver projetos cada vez melhores e conquistar oportunidades para aplicar meus conhecimentos. Acredito que a tecnologia permite transformar boas ideias em soluções que fazem a diferença.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="section-label">Vamos conversar</div>
+        <h2>Entre em contato</h2>
+        <p class="section-intro">Este espaço pode reunir seus canais profissionais para apresentar seu trabalho e compartilhar novos projetos.</p>
+        <div class="contact-grid">
+          <div class="contact-card"><small>E-mail</small><p>Adicione seu e-mail profissional</p></div>
+          <div class="contact-card"><small>GitHub</small><p>Adicione o link do seu GitHub</p></div>
+          <div class="contact-card"><small>LinkedIn</small><p>Adicione o link do seu LinkedIn</p></div>
+          <div class="contact-card"><small>Portfólio</small><p>Débora • Desenvolvimento de Sistemas</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Débora — Portfólio de Desenvolvimento de Sistemas.</div>
+  </footer>
+</body>
+</html>
